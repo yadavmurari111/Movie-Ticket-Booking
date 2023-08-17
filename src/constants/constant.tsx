@@ -36,6 +36,38 @@ export interface MovieItem {
   vote_average: number;
   vote_count: number;
 }
+export interface MovieDetailItem {
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection: {
+    id: number;
+    name: string;
+    poster_path: string;
+    backdrop_path: string;
+  };
+  budget: number;
+  genres: [];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: [];
+  production_countries: [];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: [];
+  status: 'Released';
+  tagline: 'An entire universe. Once and for all.';
+  title: 'Avengers: Infinity War';
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
 
 export const sampleResponse = {
   page: 1,

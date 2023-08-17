@@ -1,4 +1,10 @@
-import {nowPlayingMovies, popularMovies, upcomingMovies} from './api';
+import {
+  movieDetails,
+  nowPlayingMovies,
+  popularMovies,
+  searchMovies,
+  upcomingMovies,
+} from './api';
 
 export const getNowPlayingMoviesList = async () => {
   try {
@@ -33,5 +39,35 @@ export const getPopularMoviesList = async () => {
       ' Something went wrong in getPopularMoviesList Function',
       error,
     );
+  }
+};
+
+export const getSearchedMoviesList = async (keyword: string) => {
+  try {
+    let response = await fetch(searchMovies(keyword));
+    return await response.json();
+  } catch (error) {
+    console.error(
+      ' Something went wrong in getSearchedMoviesList Function',
+      error,
+    );
+  }
+};
+
+export const getMovieData = async (movieId: number) => {
+  try {
+    let response = await fetch(movieDetails(movieId));
+    return await response.json();
+  } catch (error) {
+    console.error(' Something went wrong in getMovieData Function', error);
+  }
+};
+
+export const getMovieCasteData = async (movieId: number) => {
+  try {
+    let response = await fetch(movieDetails(movieId));
+    return await response.json();
+  } catch (error) {
+    console.error(' Something went wrong in getMovieCasteData Function', error);
   }
 };

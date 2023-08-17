@@ -21,7 +21,7 @@ interface INowPlayingComponent {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 12,
+    marginHorizontal: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: presetBase.colors.white,
   },
-  generaText: {fontSize: 8},
+  generaText: {fontSize: 10, color: presetBase.colors.white},
 });
 
 const NowPlayingComponent: FunctionComponent<INowPlayingComponent> = ({
@@ -45,16 +45,16 @@ const NowPlayingComponent: FunctionComponent<INowPlayingComponent> = ({
   const {width} = useWindowDimensions();
 
   return (
-    <View style={{width: width / 1.8, ...styles.container}}>
+    <View style={{width: width / 1.5, ...styles.container}}>
       <TouchableOpacity onPress={() => onMoviePress(props)}>
         <Image
-          style={{width: width / 1.8, ...styles.image}}
+          style={{width: width / 1.5, ...styles.image}}
           source={{uri: baseImagePath('w780', props.poster_path)}}
         />
       </TouchableOpacity>
       <View style={styles.ratingBox}>
         <AntDesignIcons
-          size={20}
+          size={16}
           name={'star'}
           color={presetBase.colors.yellowBase}
         />
@@ -73,7 +73,7 @@ const NowPlayingComponent: FunctionComponent<INowPlayingComponent> = ({
       </View>
       <View style={styles.generaBox}>
         {props.genre_ids.slice(1, 4).map(item => (
-          <View style={styles.generaItem}>
+          <View key={item} style={styles.generaItem}>
             <Text style={styles.generaText}>{genres[item]}</Text>
           </View>
         ))}

@@ -11,6 +11,7 @@ import {presetBase} from '../utils/color';
 
 import SearchScreenComponent from '../SearchScreen';
 import TicketScreenComponent from '../TicketScreen';
+import MovieDetailScreen from '../MovieDetailScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -71,6 +72,11 @@ export const LoggedInScreenStack = () => {
         name={ROUTE_NAME.PROFILE_TAB}
         component={ProfileScreenComponent}
       />
+      <Stack.Screen
+        name={ROUTE_NAME.MOVIE_DETAIL}
+        component={MovieDetailScreen}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };
@@ -99,7 +105,7 @@ export const BottomTabs = () => {
       />
       <Tab.Screen
         name={ROUTE_NAME.SEARCH_TAB}
-        component={HomeScreenComponent}
+        component={SearchScreenComponent}
         options={{
           title: 'SEARCH',
           tabBarIcon: ({color}) => (

@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  Keyboard,
   ScrollView,
+  StyleSheet,
   useWindowDimensions,
   View,
 } from 'react-native';
@@ -14,19 +16,29 @@ import {ETypographyVariant} from './components/typography/label/model/label.inte
 import {
   getNowPlayingMoviesList,
   getPopularMoviesList,
+  getSearchedMoviesList,
   getUpcomingMoviesList,
 } from './data/api-calls';
-import {MovieItem, sampleResponse} from './constants/constant';
+import {MovieItem} from './constants/constant';
+import SmallMovieCardComponent from './components/small-movie-card/small-movie-card.component';
+import ROUTE_NAME from './navigation/navigation-constants';
 
 const HomeScreenComponent = ({navigation}: any) => {
   const {width} = useWindowDimensions();
+
   const [popularMovies, setPopularMovies] = useState<
     MovieItem[] | [] | undefined
   >(undefined);
-
   const [nowPlayingMoviesList, setNowPlayingMoviesList] = useState<
-    any[] | undefined
+    MovieItem[] | undefined
   >(undefined);
+  const [upcomingMoviesList, setUpcomingMoviesList] = useState<
+    MovieItem[] | undefined
+  >(undefined);
+
+  const navigateToMovieDetail = (id: number) => {
+    navigation.navigate(ROUTE_NAME.MOVIE_DETAIL, {movieId: id});
+  };
 
   useEffect(() => {
     (async () => {
@@ -37,53 +49,83 @@ const HomeScreenComponent = ({navigation}: any) => {
       let tempPopular = await getPopularMoviesList();
       setPopularMovies(tempPopular.results);
 
-      // let tempUpcoming = await getUpcomingMoviesList();
-      // setUpcomingMoviesList(tempUpcoming.results);
-
-      //==============
-
-      // getPopularMoviesList().then(res => {
-      //   console.log(res, '======');
-      //   console.log(JSON.stringify(res), '===json===');
-      //   setPopularMovies(res.results);
-      // });
+      let tempUpcoming = await getUpcomingMoviesList();
+      setUpcomingMoviesList(tempUpcoming.results);
     })();
   }, []);
 
   return (
-    <View
-      style={{
-        padding: 12,
-        backgroundColor: presetBase.colors.darkBlack,
-      }}>
+    <View style={styles.container}>
       {popularMovies === undefined && (
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+        <View style={styles.loaderContainer}>
           <ActivityIndicator size={'large'} color={presetBase.colors.white} />
         </View>
       )}
 
       {popularMovies !== undefined && (
-        <ScrollView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardDismissMode={'on-drag'}>
           <SearchInputComponent searchMovie={() => {}} />
+
+          <View style={{paddingTop: 12}}>
+            <LabelComponent
+              color={presetBase.colors.white}
+              variant={ETypographyVariant.LARGE_SEMIBOLD}>
+              Now playing
+            </LabelComponent>
+          </View>
+
+          <View>
+            <FlatList
+              horizontal={true}
+              data={nowPlayingMoviesList}
+              keyExtractor={item => String(item.id)}
+              renderItem={({item}) => (
+                <NowPlayingComponent
+                  props={item}
+                  onMoviePress={() => navigateToMovieDetail(item.id)}
+                />
+              )}
+            />
+          </View>
 
           <LabelComponent
             color={presetBase.colors.white}
             variant={ETypographyVariant.LARGE_SEMIBOLD}>
-            Now playing
+            Popular
           </LabelComponent>
-
           <View>
             <FlatList
               horizontal={true}
               data={popularMovies}
               snapToInterval={width * 0.7}
+              keyExtractor={item => String(item.id)}
               renderItem={({item}) => (
-                <NowPlayingComponent props={item} onMoviePress={() => {}} />
+                <SmallMovieCardComponent
+                  props={item}
+                  onMoviePress={() => navigateToMovieDetail(item.id)}
+                />
+              )}
+            />
+          </View>
+
+          <LabelComponent
+            color={presetBase.colors.white}
+            variant={ETypographyVariant.LARGE_SEMIBOLD}>
+            Upcoming
+          </LabelComponent>
+          <View>
+            <FlatList
+              horizontal={true}
+              data={upcomingMoviesList}
+              snapToInterval={width * 0.7}
+              keyExtractor={item => String(item.id)}
+              renderItem={({item}) => (
+                <SmallMovieCardComponent
+                  props={item}
+                  onMoviePress={() => navigateToMovieDetail(item.id)}
+                />
               )}
             />
           </View>
@@ -92,5 +134,17 @@ const HomeScreenComponent = ({navigation}: any) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 12,
+    backgroundColor: presetBase.colors.darkBlack,
+  },
+  loaderContainer: {
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default HomeScreenComponent;

@@ -18,14 +18,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     height: 45,
     borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 12,
     borderColor: presetBase.colors.blueBase,
     flexDirection: 'row',
   },
   textInput: {
     flex: 1,
     color: presetBase.colors.blueBase,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   searchButton: {
@@ -41,8 +41,8 @@ const SearchInputComponent: FunctionComponent<ISearchInputComponent> = ({
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder={'search movie...'}
-        placeholderTextColor={presetBase.colors.white}
+        placeholder={'Search movie...'}
+        placeholderTextColor={presetBase.colors.grey80}
         style={styles.textInput}
         onChangeText={setSearchText}
       />
