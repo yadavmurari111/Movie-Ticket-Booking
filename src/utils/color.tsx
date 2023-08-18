@@ -2,6 +2,7 @@ export const presetBase = {
   colors: {
     black: 'rgba(21,27,35,1)',
     darkBlack: 'rgb(0,0,0)',
+    darkBlack80: 'rgba(0,0,0,.5)',
     grey90: 'rgba(38,46,58,1)',
     darkGrey: 'rgba(55,66,82,1)',
     grey80: 'rgba(87,96,110,1)',

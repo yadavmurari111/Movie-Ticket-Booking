@@ -46,7 +46,7 @@ export interface MovieDetailItem {
     backdrop_path: string;
   };
   budget: number;
-  genres: [];
+  genres: {id: string; name: string}[];
   homepage: string;
   id: number;
   imdb_id: string;
