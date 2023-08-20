@@ -36,3 +36,38 @@ The Movie Ticket Booking App allows users to browse and book movie tickets for v
 
    ```bash
    git clone https://github.com/yourusername/movie-ticket-booking.git
+2. Navigate to the project directory::
+
+   ```bash
+   cd movie-ticket-booking
+
+3. Install dependencies:
+
+   ```bash
+   yarn install or npm install
+4. Run the app:
+   ```bash
+   npx react-native run-android
+
+## Technologies Used
+
+- Typescript
+- React Native
+- Async Storage
+- React Navigation for navigation
+- Axios for API requests
+
+## API Integration
+The app uses the Movie Database (TMDb) API to fetch movie data. You need to sign up for a TMDb API key and add it to the configuration file:
+
+- Obtain an API key from TMDb.
+- Create a file named config.js in the root directory.
+- Add your API key to config.js:
+  ```bash
+   export const TMDB_API_KEY = 'YOUR_API_KEY_HERE';
+## Contributing
+Contributions are welcome! Feel free to open issues and pull requests for bug fixes, enhancements, or new features.
+
+## License
+This project is licensed under the MIT License
+
