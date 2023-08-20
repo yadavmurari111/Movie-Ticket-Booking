@@ -1,18 +1,18 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {formatRunTime} from './utils/utils';
 import {baseImagePath} from './data/api';
 import LinearGradient from 'react-native-linear-gradient';
 import {presetBase} from './utils/color';
 import {MovieDetailItem, RowNumber} from './constants/constant';
 import AntDesignIcons from 'react-native-vector-icons/AntDesign';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import LabelComponent from './components/typography/label/label.component';
 import {ETypographyVariant} from './components/typography/label/model/label.interface';
 import {IDayDateItem} from './components/day-date/day-date.component';
 import {ISeatRow} from './components/seat-item/seat-item.component';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import HeaderComponent from './components/header/header.component';
 
 interface ITicketData {
   movieData: MovieDetailItem;
@@ -24,18 +24,13 @@ interface ITicketData {
 const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
   const [storedTicketData, setStoredTicketData] = useState<ITicketData>();
 
-  console.log(storedTicketData, '==storedTicketData==');
   useEffect(() => {
     (async () => {
       const ticketData = await EncryptedStorage.getItem('TicketData');
-      console.log(ticketData, '==ticketData==');
-      if (route.params) {
-        console.log('==route==');
+      if (route?.params?.movieData !== undefined) {
         setStoredTicketData(route.params);
       } else if (ticketData !== null) {
-        console.log('==route==');
         const tempData = JSON.parse(ticketData);
-        console.log(tempData);
         setStoredTicketData(tempData);
       }
     })();
@@ -43,17 +38,16 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}>
-        <Ionicons
-          name={'arrow-back-circle'}
-          color={presetBase.colors.blueBase}
-          size={40}
-        />
-      </TouchableOpacity>
-      <View style={styles.linearGradientContainer}>
-        {storedTicketData && (
+      <HeaderComponent navigation={navigation} title={'Ticket'} />
+      {!storedTicketData && (
+        <LabelComponent
+          variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+          color={presetBase.colors.white}>
+          No movie ticket booked yet!
+        </LabelComponent>
+      )}
+      {storedTicketData && (
+        <View style={styles.linearGradientContainer}>
           <Image
             style={styles.imageBG}
             source={{
@@ -63,28 +57,27 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
               ),
             }}
           />
-        )}
-        <View style={styles.linearGradientBox}>
-          <LinearGradient
-            colors={[
-              'transparent',
-              'transparent',
-              'transparent',
-              presetBase.colors.blueBase,
-              presetBase.colors.blueBase,
-            ]}
-            locations={[0, 0.03, 0.4, 0.7, 1]}
-            style={styles.linearGradient}>
-            <View style={styles.linearGradient}>
-              <View style={styles.topLeftQuadCircle} />
-              <View style={styles.topRightQuadCircle} />
-            </View>
-          </LinearGradient>
-        </View>
 
-        <View style={styles.dashedLine} />
+          <View style={styles.linearGradientBox}>
+            <LinearGradient
+              colors={[
+                'transparent',
+                'transparent',
+                'transparent',
+                presetBase.colors.blueBase,
+                presetBase.colors.blueBase,
+              ]}
+              locations={[0, 0.03, 0.4, 0.7, 1]}
+              style={styles.linearGradient}>
+              <View style={styles.linearGradient}>
+                <View style={styles.topLeftQuadCircle} />
+                <View style={styles.topRightQuadCircle} />
+              </View>
+            </LinearGradient>
+          </View>
 
-        {storedTicketData && (
+          <View style={styles.dashedLine} />
+
           <View>
             <View style={styles.bottomLeftQuadCircle} />
             <View style={styles.bottomRightQuadCircle} />
@@ -167,8 +160,8 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
               />
             </View>
           </View>
-        )}
-      </View>
+        </View>
+      )}
     </View>
   );
 };
@@ -226,7 +219,8 @@ const styles = StyleSheet.create({
     width: '80%',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: presetBase.colors.orangeBase,
+    backgroundColor: presetBase.colors.grey80,
+    opacity: 0.8,
     borderRadius: 12,
     marginVertical: 5,
     marginHorizontal: 12,
@@ -274,7 +268,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: 'black',
   },
-  backButton: {width: '100%', padding: 12},
 });
 
 export default TicketScreenComponent;

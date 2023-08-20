@@ -22,6 +22,7 @@ import {ETypographyVariant} from './components/typography/label/model/label.inte
 import CastCardComponent from './components/cast-card/cast-card.component';
 import ROUTE_NAME from './navigation/navigation-constants';
 import {formatRunTime} from './utils/utils';
+import HeaderComponent from './components/header/header.component';
 
 const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
   const movieId = route.params.movieId;
@@ -75,6 +76,7 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
               style={styles.imageBG}
               source={{uri: baseImagePath('w780', movieData?.backdrop_path)}}
             />
+
             <View style={styles.linearGradientBox}>
               <LinearGradient
                 colors={[
@@ -99,6 +101,7 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
             </View>
           </View>
           <View onLayout={handleLayout} style={styles.forGroundContainer}>
+            <HeaderComponent navigation={navigation} />
             <View style={styles.imagePosterContainer}>
               <Image
                 style={{width: width * 0.6, ...styles.imagePoster}}
@@ -230,7 +233,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: presetBase.colors.white,
   },
-  generaText: {fontSize: 16, fontWeight: '700', color: presetBase.colors.white},
+  generaText: {fontSize: 14, fontWeight: '700', color: presetBase.colors.white},
   backGroundContainer: {zIndex: 1},
   forGroundContainer: {
     zIndex: 2,
@@ -241,7 +244,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imagePosterContainer: {marginTop: '30%'},
-  detailsContainer: {flex: 1, width: '100%'},
+  detailsContainer: {flex: 1, width: '100%', paddingTop: 5},
   ratingBox: {flexDirection: 'row', padding: 5},
   itemSeparator: {padding: 5},
   selectSeatButton: {
