@@ -40,6 +40,7 @@ export const WelcomeScreenStack = () => {
       <Stack.Screen
         name={ROUTE_NAME.WELCOME_SCREEN}
         component={WelcomeScreenComponent}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
@@ -68,6 +69,7 @@ export const LoggedInScreenStack = () => {
       <Stack.Screen
         name={ROUTE_NAME.TICKET_TAB}
         component={TicketScreenComponent}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name={ROUTE_NAME.PROFILE_TAB}

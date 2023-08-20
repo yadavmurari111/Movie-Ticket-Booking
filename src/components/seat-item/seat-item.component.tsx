@@ -22,7 +22,7 @@ interface ISeatItemComponent {
   setSeatSelected(Data: ISeatRow): void;
 }
 
-const SeatRowComponent: FunctionComponent<ISeatItemComponent> = ({
+const SeatsComponent: FunctionComponent<ISeatItemComponent> = ({
   row,
   column,
   title,
@@ -44,8 +44,6 @@ const SeatRowComponent: FunctionComponent<ISeatItemComponent> = ({
     setSeatSelected(item); // event to access in parent component
   };
 
-  console.log(selectedSeatsArray, 'selected== ' + title);
-
   return (
     <View>
       {title && (
@@ -59,7 +57,7 @@ const SeatRowComponent: FunctionComponent<ISeatItemComponent> = ({
       )}
       {twoDSeatArray.map((rowArray, rowArrayIndex) => {
         return (
-          <View style={styles.rowContainer}>
+          <View key={rowArrayIndex} style={styles.rowContainer}>
             {rowArray.map((item, columnIndex) => {
               const markSelected = selectedSeatsArray.find(
                 seatData => seatData.id === item.id,
@@ -149,4 +147,4 @@ export const generateSeats2dArray = (
   return twoDArray;
 };
 
-export default SeatRowComponent;
+export default SeatsComponent;

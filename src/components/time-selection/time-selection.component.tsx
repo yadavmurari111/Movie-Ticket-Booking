@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {ScrollView, TouchableOpacity, View} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {presetBase} from '../../utils/color';
 import LabelComponent from '../typography/label/label.component';
 import {ETypographyVariant} from '../typography/label/model/label.interface';
@@ -15,20 +15,18 @@ const TimeSelectionComponent: FunctionComponent<ITimeSelection> = ({
   setTimeSlotSelected,
 }) => {
   return (
-    <View style={{flexDirection: 'row'}}>
+    <View style={styles.container}>
       <ScrollView horizontal={true}>
         {timeArray.map(item => (
           <TouchableOpacity
+            key={item}
             onPress={() => setTimeSlotSelected(item)}
             style={{
               backgroundColor:
                 timeSlotSelected === item
                   ? presetBase.colors.blueBase
                   : presetBase.colors.grey80,
-              padding: 12,
-              marginHorizontal: 8,
-              marginVertical: 5,
-              borderRadius: 12,
+              ...styles.timeSlot,
             }}>
             <LabelComponent
               color={presetBase.colors.white}
@@ -41,4 +39,15 @@ const TimeSelectionComponent: FunctionComponent<ITimeSelection> = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {flexDirection: 'row'},
+  timeSlot: {
+    padding: 12,
+    marginHorizontal: 8,
+    marginVertical: 5,
+    borderRadius: 12,
+  },
+});
+
 export default TimeSelectionComponent;

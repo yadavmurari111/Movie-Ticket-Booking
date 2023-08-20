@@ -16,3 +16,13 @@ export const getDataFromStorage = async (key: string) => {
     return jsonValue ? JSON.parse(jsonValue) : [];
   });
 };
+
+export const formatRunTime = (runtime: number) => {
+  const hours = Math.floor(runtime / 60);
+  const minutes = Math.floor(runtime % 60);
+
+  const formattedHours = String(hours).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
+
+  return formattedHours + ' : ' + formattedMinutes;
+};
