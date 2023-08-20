@@ -41,7 +41,6 @@ const HomeScreenComponent = ({navigation}: any) => {
   useEffect(() => {
     (async () => {
       let tempNowPlaying = await getNowPlayingMoviesList();
-      console.log(JSON.stringify(tempNowPlaying), '====now playing=====');
       setNowPlayingMoviesList([...tempNowPlaying.results]);
 
       let tempPopular = await getPopularMoviesList();
@@ -62,6 +61,7 @@ const HomeScreenComponent = ({navigation}: any) => {
 
       {popularMovies !== undefined && (
         <ScrollView
+          bounces={false}
           showsVerticalScrollIndicator={false}
           keyboardDismissMode={'on-drag'}>
           <SearchInputComponent searchMovie={() => {}} />

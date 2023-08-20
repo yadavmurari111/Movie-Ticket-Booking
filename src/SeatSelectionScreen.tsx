@@ -67,7 +67,6 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
   };
 
   const handleSeatSelected = async (item: ISeatRow) => {
-    console.log(item, '--item--');
     await setTicketsPrice(ticketsPrice + item.ticketsPrice);
     await setSeatsSelected([...seatsSelected, item]);
   };

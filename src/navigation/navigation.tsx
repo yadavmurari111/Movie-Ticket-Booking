@@ -40,6 +40,7 @@ export const WelcomeScreenStack = () => {
       <Stack.Screen
         name={ROUTE_NAME.WELCOME_SCREEN}
         component={WelcomeScreenComponent}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

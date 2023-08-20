@@ -44,8 +44,6 @@ const SeatsComponent: FunctionComponent<ISeatItemComponent> = ({
     setSeatSelected(item); // event to access in parent component
   };
 
-  console.log(selectedSeatsArray, 'selected== ' + title);
-
   return (
     <View>
       {title && (
