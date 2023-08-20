@@ -8,7 +8,8 @@ const ROUTE_NAME = {
   TICKET_TAB: 'TicketBottomTab',
   PROFILE_TAB: 'ProfileBottomTab',
 
-  MOVIE_DETAIL: 'Movie_detail',
+  MOVIE_DETAIL: 'MovieDetail',
+  MOVIE_SEAT_SELECTION: 'MovieSeatSelection',
   WELCOME_SCREEN: 'WELCOME',
 };
 export default ROUTE_NAME;

@@ -3,8 +3,8 @@ import {Button, Text, View} from 'react-native';
 import {LOGGEDIN_USER, storeDataToAsyncStorage} from './utils/utils';
 
 const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
-  const routeData = route.params;
-  console.log('route data is :', routeData);
+  const routeData = route;
+  console.log(routeData);
   const saveData = () => {
     storeDataToAsyncStorage(LOGGEDIN_USER, {
       loggedIN: true,
