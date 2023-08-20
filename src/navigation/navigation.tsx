@@ -12,6 +12,7 @@ import {presetBase} from '../utils/color';
 import SearchScreenComponent from '../SearchScreen';
 import TicketScreenComponent from '../TicketScreen';
 import MovieDetailScreen from '../MovieDetailScreen';
+import SeatSelectionScreen from '../SeatSelectionScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -75,6 +76,11 @@ export const LoggedInScreenStack = () => {
       <Stack.Screen
         name={ROUTE_NAME.MOVIE_DETAIL}
         component={MovieDetailScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={ROUTE_NAME.MOVIE_SEAT_SELECTION}
+        component={SeatSelectionScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

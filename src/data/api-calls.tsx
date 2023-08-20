@@ -1,4 +1,5 @@
 import {
+  movieCastDetails,
   movieDetails,
   nowPlayingMovies,
   popularMovies,
@@ -65,7 +66,7 @@ export const getMovieData = async (movieId: number) => {
 
 export const getMovieCasteData = async (movieId: number) => {
   try {
-    let response = await fetch(movieDetails(movieId));
+    let response = await fetch(movieCastDetails(movieId));
     return await response.json();
   } catch (error) {
     console.error(' Something went wrong in getMovieCasteData Function', error);
