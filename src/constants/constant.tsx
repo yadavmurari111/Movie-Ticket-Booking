@@ -68,6 +68,39 @@ export interface MovieDetailItem {
   vote_average: number;
   vote_count: number;
 }
+export interface MovieCastItem {
+  id: number;
+  cast: CastItem[];
+  crew: CrewItem[];
+}
+
+export interface CastItem {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+}
+export interface CrewItem {
+  adult: boolean;
+  credit_id: string;
+  department: string;
+  gender: number;
+  id: number;
+  job: string;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+}
 
 export const sampleResponse = {
   page: 1,
