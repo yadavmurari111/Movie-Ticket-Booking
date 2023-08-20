@@ -50,7 +50,7 @@ export const LoggedInScreenStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        animation: 'slide_from_right',
+        animation: 'none',
         headerShadowVisible: true,
       }}>
       <Stack.Screen
@@ -94,8 +94,7 @@ export const BottomTabs = () => {
     <Tab.Navigator
       activeColor={presetBase.colors.blueBase}
       inactiveColor={presetBase.colors.whiteSmooth}
-      barStyle={{backgroundColor: presetBase.colors.black}}
-      sceneAnimationType={'shifting'}
+      barStyle={{backgroundColor: presetBase.colors.darkBlack}}
       initialRouteName={ROUTE_NAME.HOME_TAB}>
       <Tab.Screen
         name={ROUTE_NAME.HOME_TAB}

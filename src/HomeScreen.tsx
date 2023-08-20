@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import {presetBase} from './utils/color';
-import SearchInputComponent from './components/search-input/search-input.component';
 import NowPlayingComponent from './components/now-playing/now-playing.component';
 import LabelComponent from './components/typography/label/label.component';
 import {ETypographyVariant} from './components/typography/label/model/label.interface';
@@ -64,8 +63,6 @@ const HomeScreenComponent = ({navigation}: any) => {
           bounces={false}
           showsVerticalScrollIndicator={false}
           keyboardDismissMode={'on-drag'}>
-          <SearchInputComponent searchMovie={() => {}} />
-
           <View style={styles.nowPlayingTitle}>
             <LabelComponent
               color={presetBase.colors.white}
@@ -143,7 +140,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  nowPlayingTitle: {paddingTop: 12},
+  nowPlayingTitle: {paddingVertical: 12},
 });
 
 export default HomeScreenComponent;

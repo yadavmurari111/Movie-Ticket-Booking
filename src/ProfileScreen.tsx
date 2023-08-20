@@ -17,7 +17,7 @@ const ProfileScreenComponent: FunctionComponent<any> = ({navigation}) => {
   //const navigation = useNavigation();
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
         <HeaderComponent navigation={navigation} title={'My profile'} />
         <TouchableOpacity style={styles.imageAvatarBox}>
@@ -32,30 +32,30 @@ const ProfileScreenComponent: FunctionComponent<any> = ({navigation}) => {
 
         <TouchableOpacity style={styles.settingsContainer}>
           <View style={styles.iconBox}>
-            <Ionicons name={'person-outline'} size={30} color={'grey'} />
+            <Ionicons name={'person-outline'} size={20} color={'grey'} />
           </View>
           <LabelComponent
-            variant={ETypographyVariant.HEADER_H1}
+            variant={ETypographyVariant.LARGE_SEMIBOLD}
             color={presetBase.colors.white}>
             {'Account'}
           </LabelComponent>
         </TouchableOpacity>
         <TouchableOpacity style={styles.settingsContainer}>
           <View style={styles.iconBox}>
-            <Ionicons name={'settings-outline'} size={30} color={'grey'} />
+            <Ionicons name={'settings-outline'} size={20} color={'grey'} />
           </View>
           <LabelComponent
-            variant={ETypographyVariant.HEADER_H1}
+            variant={ETypographyVariant.LARGE_SEMIBOLD}
             color={presetBase.colors.white}>
             {'Settings'}
           </LabelComponent>
         </TouchableOpacity>
         <TouchableOpacity style={styles.settingsContainer}>
           <View style={styles.iconBox}>
-            <Ionicons name={'gift-outline'} size={30} color={'grey'} />
+            <Ionicons name={'gift-outline'} size={20} color={'grey'} />
           </View>
           <LabelComponent
-            variant={ETypographyVariant.HEADER_H1}
+            variant={ETypographyVariant.LARGE_SEMIBOLD}
             color={presetBase.colors.white}>
             {'Rewards'}
           </LabelComponent>
@@ -64,12 +64,12 @@ const ProfileScreenComponent: FunctionComponent<any> = ({navigation}) => {
           <View style={styles.iconBox}>
             <Ionicons
               name={'information-circle-outline'}
-              size={30}
+              size={20}
               color={'grey'}
             />
           </View>
           <LabelComponent
-            variant={ETypographyVariant.HEADER_H1}
+            variant={ETypographyVariant.LARGE_SEMIBOLD}
             color={presetBase.colors.white}>
             {'About'}
           </LabelComponent>
@@ -78,12 +78,12 @@ const ProfileScreenComponent: FunctionComponent<any> = ({navigation}) => {
           <View style={styles.iconBox}>
             <Ionicons
               name={'power-sharp'}
-              size={30}
+              size={20}
               color={presetBase.colors.redOnLight}
             />
           </View>
           <LabelComponent
-            variant={ETypographyVariant.HEADER_H1}
+            variant={ETypographyVariant.LARGE_SEMIBOLD}
             color={presetBase.colors.redOnLight}>
             {'Logout'}
           </LabelComponent>
@@ -94,25 +94,33 @@ const ProfileScreenComponent: FunctionComponent<any> = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
     padding: 12,
     backgroundColor: presetBase.colors.darkBlack,
   },
+  container: {
+    flex: 1,
+    backgroundColor: presetBase.colors.darkBlack,
+  },
   settingsContainer: {
-    paddingVertical: 20,
+    paddingVertical: 10,
+    marginVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    borderColor: 'white',
   },
-  iconBox: {marginRight: 40},
+  iconBox: {marginHorizontal: 30},
   username: {
     color: 'white',
     fontWeight: '700',
-    fontSize: 20,
+    fontSize: 18,
     paddingTop: 12,
   },
   imageAvatar: {width: 150, height: 150, borderRadius: 100},
-  imageAvatarBox: {alignItems: 'center', paddingTop: 70},
+  imageAvatarBox: {alignItems: 'center', paddingVertical: 40},
 });
 
 export default ProfileScreenComponent;

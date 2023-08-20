@@ -24,6 +24,7 @@ import SeatsComponent, {
 } from './components/seat-item/seat-item.component';
 import TimeSelectionComponent from './components/time-selection/time-selection.component';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import HeaderComponent from './components/header/header.component';
 
 const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
   const movieData = route.params.movieData as MovieDetailItem;
@@ -91,6 +92,11 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
               style={styles.imageBG}
               source={{uri: baseImagePath('w780', movieData?.backdrop_path)}}
             />
+            <HeaderComponent
+              navigation={navigation}
+              title={''}
+              position={'absolute'}
+            />
             <View style={styles.linearGradientBox}>
               <LinearGradient
                 colors={[
@@ -104,8 +110,8 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
                 <View style={styles.linearGradient}>
                   <View style={styles.subContainer}>
                     <SeatsComponent
-                      row={12}
-                      column={8}
+                      row={4}
+                      column={6}
                       title={'SILVER ₹150'}
                       ticketPrice={150}
                       setSeatSelected={handleSeatSelected}
@@ -114,9 +120,19 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
 
                   <View style={styles.subContainer}>
                     <SeatsComponent
+                      row={5}
+                      column={8}
+                      title={'GOLD ₹200'}
+                      ticketPrice={200}
+                      setSeatSelected={handleSeatSelected}
+                    />
+                  </View>
+
+                  <View style={styles.subContainer}>
+                    <SeatsComponent
                       row={2}
-                      column={10}
-                      title={'GOLD ₹250'}
+                      column={8}
+                      title={'DIAMOND ₹250'}
                       ticketPrice={250}
                       setSeatSelected={handleSeatSelected}
                     />

@@ -85,12 +85,12 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
               <View style={styles.footerSubContainer}>
                 <View style={styles.footerItemContainer}>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
                     {storedTicketData.dateSlotSelected.dateNumber}
                   </LabelComponent>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
                     {storedTicketData.dateSlotSelected.dayName}
                   </LabelComponent>
@@ -99,7 +99,7 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
                   <LabelComponent
                     variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
-                    Time
+                    time
                   </LabelComponent>
                   <LabelComponent
                     variant={ETypographyVariant.SMALL_SEMIBOLD}
@@ -109,7 +109,7 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
                 </View>
                 <View style={styles.footerItemContainer}>
                   <AntDesignIcons
-                    size={16}
+                    size={14}
                     name={'clockcircleo'}
                     color={presetBase.colors.white}
                   />
@@ -123,9 +123,9 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
               <View style={styles.footerSubContainer}>
                 <View style={styles.footerItemContainer}>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
-                    Hall no.
+                    hall no.
                   </LabelComponent>
                   <LabelComponent
                     variant={ETypographyVariant.SMALL_SEMIBOLD}
@@ -135,9 +135,9 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
                 </View>
                 <View style={styles.footerItemContainer}>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
-                    Seats
+                    seats
                   </LabelComponent>
                   <View style={styles.seatsBox}>
                     {storedTicketData.seatsSelected &&
@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     display: 'flex',
+    padding: 12,
     alignItems: 'center',
     backgroundColor: presetBase.colors.darkBlack,
   },

@@ -1,11 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import {presetBase} from '../../utils/color';
 import MaterialCommunityIcons from 'react-native-vector-icons/FontAwesome';
 
@@ -45,6 +39,7 @@ const SearchInputComponent: FunctionComponent<ISearchInputComponent> = ({
         placeholderTextColor={presetBase.colors.grey80}
         style={styles.textInput}
         onChangeText={setSearchText}
+        onSubmitEditing={() => searchMovie(searchText)}
       />
       <TouchableOpacity
         style={styles.searchButton}
