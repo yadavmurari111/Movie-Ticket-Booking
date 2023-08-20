@@ -40,11 +40,13 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
     <View style={styles.container}>
       <HeaderComponent navigation={navigation} title={'My Tickets'} />
       {!storedTicketData && (
-        <LabelComponent
-          variant={ETypographyVariant.MEDIUM_SEMIBOLD}
-          color={presetBase.colors.white}>
-          No movie ticket booked yet!
-        </LabelComponent>
+        <View style={styles.loaderContainer}>
+          <LabelComponent
+            variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+            color={presetBase.colors.white}>
+            No movie ticket booked yet!
+          </LabelComponent>
+        </View>
       )}
       {storedTicketData && (
         <View style={styles.linearGradientContainer}>
@@ -174,7 +176,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: presetBase.colors.darkBlack,
   },
-
+  loaderContainer: {
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   imageBG: {
     width: '100%',
     aspectRatio: 9 / 16,
