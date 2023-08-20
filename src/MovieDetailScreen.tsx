@@ -21,6 +21,7 @@ import LabelComponent from './components/typography/label/label.component';
 import {ETypographyVariant} from './components/typography/label/model/label.interface';
 import CastCardComponent from './components/cast-card/cast-card.component';
 import ROUTE_NAME from './navigation/navigation-constants';
+import {formatRunTime} from './utils/utils';
 
 const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
   const movieId = route.params.movieId;
@@ -33,12 +34,6 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
   const [movieCasteData, setMovieCasteData] = useState<
     MovieCastItem | undefined
   >(undefined);
-
-  const formatTime = (runtime: number) => {
-    const hours = Math.floor(runtime / 60);
-    const minutes = Math.floor(runtime % 60);
-    return hours + ' : ' + minutes;
-  };
 
   const handleLayout = (event: any) => {
     const imageBannerHeight = 150;
@@ -75,7 +70,7 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
 
       {movieData?.original_title && (
         <View style={styles.container}>
-          <View style={{zIndex: 1}}>
+          <View style={styles.backGroundContainer}>
             <Image
               style={styles.imageBG}
               source={{uri: baseImagePath('w780', movieData?.backdrop_path)}}
@@ -103,19 +98,8 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
               />
             </View>
           </View>
-          <View
-            onLayout={handleLayout}
-            style={{
-              zIndex: 2,
-              position: 'absolute',
-              width: width,
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              // backgroundColor: 'green',
-              // opacity: 0.3,
-            }}>
-            <View style={{marginTop: '30%'}}>
+          <View onLayout={handleLayout} style={styles.forGroundContainer}>
+            <View style={styles.imagePosterContainer}>
               <Image
                 style={{width: width * 0.6, ...styles.imagePoster}}
                 source={{uri: baseImagePath('w780', movieData?.poster_path)}}
@@ -130,7 +114,7 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
               <LabelComponent
                 variant={ETypographyVariant.LARGE_SEMIBOLD}
                 color={presetBase.colors.white}>
-                {' ' + formatTime(movieData.runtime)}
+                {' ' + formatRunTime(movieData.runtime)}
               </LabelComponent>
             </View>
             <View>
@@ -154,8 +138,8 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
                 {movieData.tagline}
               </LabelComponent>
             </View>
-            <View style={{flex: 1, width, borderWidth: 0}}>
-              <View style={{flexDirection: 'row', padding: 5}}>
+            <View style={styles.detailsContainer}>
+              <View style={styles.ratingBox}>
                 <AntDesignIcons
                   name={'star'}
                   size={20}
@@ -176,14 +160,14 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
                   {'  ' + movieData.release_date}
                 </LabelComponent>
               </View>
-              <View style={{padding: 5}}>
+              <View style={styles.itemSeparator}>
                 <LabelComponent
                   variant={ETypographyVariant.LARGE_REGULAR}
                   color={presetBase.colors.white}>
                   {movieData.overview}
                 </LabelComponent>
               </View>
-              <View style={{padding: 5}}>
+              <View style={styles.itemSeparator}>
                 <LabelComponent
                   variant={ETypographyVariant.HEADER_H1}
                   color={presetBase.colors.white}>
@@ -203,13 +187,7 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
             </View>
             <TouchableOpacity
               onPress={() => navigateToSeatSelection(movieData)}
-              style={{
-                backgroundColor: presetBase.colors.blueBase,
-                paddingHorizontal: 50,
-                borderRadius: 50,
-                paddingVertical: 5,
-                marginTop: 20,
-              }}>
+              style={styles.selectSeatButton}>
               <LabelComponent
                 variant={ETypographyVariant.LARGE_SEMIBOLD}
                 color={presetBase.colors.white}>
@@ -253,6 +231,26 @@ const styles = StyleSheet.create({
     borderColor: presetBase.colors.white,
   },
   generaText: {fontSize: 16, fontWeight: '700', color: presetBase.colors.white},
+  backGroundContainer: {zIndex: 1},
+  forGroundContainer: {
+    zIndex: 2,
+    position: 'absolute',
+    width: '100%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imagePosterContainer: {marginTop: '30%'},
+  detailsContainer: {flex: 1, width: '100%'},
+  ratingBox: {flexDirection: 'row', padding: 5},
+  itemSeparator: {padding: 5},
+  selectSeatButton: {
+    backgroundColor: presetBase.colors.blueBase,
+    paddingHorizontal: 50,
+    borderRadius: 50,
+    paddingVertical: 5,
+    marginTop: 20,
+  },
 });
 
 export default MovieDetailScreen;

@@ -19,10 +19,11 @@ import ROUTE_NAME from './navigation/navigation-constants';
 import Next15DayDateCards, {
   IDayDateItem,
 } from './components/day-date/day-date.component';
-import SeatItemComponent, {
+import SeatsComponent, {
   ISeatRow,
 } from './components/seat-item/seat-item.component';
 import TimeSelectionComponent from './components/time-selection/time-selection.component';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
   const movieData = route.params.movieData as MovieDetailItem;
@@ -42,9 +43,10 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
     timeSlotSelected,
     dateSlotSelected,
     seatsSelected,
+    movieData,
   };
 
-  const navigateToTicketScreen = () => {
+  const navigateToTicketScreen = async () => {
     if (
       dateSlotSelected.dateNumber === 0 &&
       timeSlotSelected === '' &&
@@ -52,7 +54,15 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
     ) {
       ToastAndroid.show('Please select valid info', ToastAndroid.TOP);
     } else {
-      navigation.navigate(ROUTE_NAME.TICKET_TAB, dataToTicketComponent);
+      await EncryptedStorage.setItem(
+        'TicketData',
+        JSON.stringify(dataToTicketComponent), // save ticketData to EncryptedStorage
+      );
+
+      navigation.navigate(ROUTE_NAME.BOTTOM_TABS, {
+        screen: ROUTE_NAME.TICKET_TAB,
+        params: dataToTicketComponent, // Pass your data as a parameter
+      });
     }
   };
 
@@ -94,7 +104,7 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
                 style={styles.linearGradient}>
                 <View style={styles.linearGradient}>
                   <View style={styles.subContainer}>
-                    <SeatItemComponent
+                    <SeatsComponent
                       row={12}
                       column={8}
                       title={'SILVER ₹150'}
@@ -104,7 +114,7 @@ const SeatSelectionScreen: FunctionComponent<any> = ({navigation, route}) => {
                   </View>
 
                   <View style={styles.subContainer}>
-                    <SeatItemComponent
+                    <SeatsComponent
                       row={2}
                       column={10}
                       title={'GOLD ₹250'}

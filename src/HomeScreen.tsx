@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  Keyboard,
   ScrollView,
   StyleSheet,
   useWindowDimensions,
@@ -16,7 +15,6 @@ import {ETypographyVariant} from './components/typography/label/model/label.inte
 import {
   getNowPlayingMoviesList,
   getPopularMoviesList,
-  getSearchedMoviesList,
   getUpcomingMoviesList,
 } from './data/api-calls';
 import {MovieItem} from './constants/constant';
@@ -68,7 +66,7 @@ const HomeScreenComponent = ({navigation}: any) => {
           keyboardDismissMode={'on-drag'}>
           <SearchInputComponent searchMovie={() => {}} />
 
-          <View style={{paddingTop: 12}}>
+          <View style={styles.nowPlayingTitle}>
             <LabelComponent
               color={presetBase.colors.white}
               variant={ETypographyVariant.LARGE_SEMIBOLD}>
@@ -145,6 +143,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  nowPlayingTitle: {paddingTop: 12},
 });
 
 export default HomeScreenComponent;

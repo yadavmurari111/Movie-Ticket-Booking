@@ -20,6 +20,24 @@ export const genres: any = {
   37: 'Western',
 };
 
+export const RowNumber: any = {
+  1: 'A',
+  2: 'B',
+  3: 'C',
+  4: 'D',
+  5: 'E',
+  6: 'F',
+  7: 'G',
+  8: 'H',
+  9: 'I',
+  10: 'J',
+  11: 'K',
+  12: 'L',
+  13: 'M',
+  14: 'N',
+  15: '0',
+};
+
 export interface MovieItem {
   adult: boolean;
   backdrop_path: string;
