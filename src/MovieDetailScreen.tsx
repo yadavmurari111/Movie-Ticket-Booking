@@ -61,7 +61,7 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
       showsVerticalScrollIndicator={false}
       bounces={false}
       style={styles.container}>
-      <StatusBar hidden />
+      <StatusBar hidden translucent />
 
       {movieData && !movieData.original_title && (
         <View style={styles.loaderContainer}>
@@ -84,7 +84,7 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
                   presetBase.colors.darkBlack,
                   presetBase.colors.darkBlack,
                   presetBase.colors.darkBlack,
-                  presetBase.colors.darkGrey,
+                  presetBase.colors.darkBlack,
                   presetBase.colors.darkGrey,
                   presetBase.colors.grey80,
                   presetBase.colors.grey60,
@@ -110,22 +110,22 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
             </View>
             <View style={styles.timeBox}>
               <AntDesignIcons
-                size={20}
+                size={16}
                 name={'clockcircleo'}
                 color={presetBase.colors.white}
               />
+
               <LabelComponent
-                variant={ETypographyVariant.LARGE_SEMIBOLD}
+                componentStyleSheet={{}}
+                variant={ETypographyVariant.MEDIUM_SEMIBOLD}
                 color={presetBase.colors.white}>
                 {' ' + formatRunTime(movieData.runtime)}
               </LabelComponent>
             </View>
             <View>
-              <LabelComponent
-                color={presetBase.colors.white}
-                variant={ETypographyVariant.HEADER_H1}>
+              <Text style={styles.movieTitleBox}>
                 {movieData.original_title}
-              </LabelComponent>
+              </Text>
             </View>
             <View style={styles.generaBox}>
               {movieData.genres.map(item => (
@@ -172,8 +172,8 @@ const MovieDetailScreen: FunctionComponent<any> = ({navigation, route}) => {
               </View>
               <View style={styles.itemSeparator}>
                 <LabelComponent
-                  variant={ETypographyVariant.HEADER_H1}
-                  color={presetBase.colors.white}>
+                  variant={ETypographyVariant.LARGE_SEMIBOLD}
+                  color={presetBase.colors.blueBase}>
                   Top cast
                 </LabelComponent>
               </View>
@@ -224,6 +224,13 @@ const styles = StyleSheet.create({
   },
   linearGradientBox: {marginTop: -30, display: 'flex', flex: 1},
   timeBox: {padding: 3, flexDirection: 'row', alignItems: 'center'},
+  movieTitleBox: {
+    color: presetBase.colors.white,
+    fontWeight: '700',
+    fontSize: 18,
+    textAlign: 'center',
+    paddingBottom: 12,
+  },
 
   generaBox: {flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'},
   generaItem: {
@@ -233,7 +240,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: presetBase.colors.white,
   },
-  generaText: {fontSize: 14, fontWeight: '700', color: presetBase.colors.white},
+  generaText: {fontSize: 12, fontWeight: '700', color: presetBase.colors.white},
   backGroundContainer: {zIndex: 1},
   forGroundContainer: {
     zIndex: 2,
@@ -244,7 +251,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imagePosterContainer: {marginTop: '30%'},
-  detailsContainer: {flex: 1, width: '100%', paddingTop: 5},
+  detailsContainer: {
+    flex: 1,
+    width: '100%',
+    paddingTop: 5,
+    paddingHorizontal: 10,
+  },
   ratingBox: {flexDirection: 'row', padding: 5},
   itemSeparator: {padding: 5},
   selectSeatButton: {

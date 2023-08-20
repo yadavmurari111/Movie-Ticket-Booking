@@ -21,11 +21,12 @@ interface INowPlayingComponent {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 12,
+    marginRight: 12,
+    marginLeft: 6,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  image: {aspectRatio: 2 / 3, borderRadius: 12},
+  image: {aspectRatio: 2 / 3, borderRadius: 12, width: '100%'},
   ratingBox: {padding: 3, flexDirection: 'row', alignItems: 'center'},
   generaBox: {flexDirection: 'row'},
   generaItem: {
@@ -45,10 +46,10 @@ const NowPlayingComponent: FunctionComponent<INowPlayingComponent> = ({
   const {width} = useWindowDimensions();
 
   return (
-    <View style={{width: width / 1.5, ...styles.container}}>
+    <View style={{width: width * 0.9, ...styles.container}}>
       <TouchableOpacity onPress={() => onMoviePress(props)}>
         <Image
-          style={{width: width / 1.5, ...styles.image}}
+          style={{...styles.image}}
           source={{uri: baseImagePath('w780', props.poster_path)}}
         />
       </TouchableOpacity>

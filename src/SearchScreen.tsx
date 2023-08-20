@@ -13,6 +13,7 @@ import {MovieItem} from './constants/constant';
 import SmallMovieCardComponent from './components/small-movie-card/small-movie-card.component';
 import {getSearchedMoviesList} from './data/api-calls';
 import ROUTE_NAME from './navigation/navigation-constants';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const SearchScreenComponent = ({navigation}: any) => {
   const {width} = useWindowDimensions();
@@ -56,6 +57,15 @@ const SearchScreenComponent = ({navigation}: any) => {
             />
           )}
         />
+      )}
+      {!searchedMovies && (
+        <View style={styles.loaderContainer}>
+          <Ionicons
+            name={'search'}
+            color={presetBase.colors.blueBase}
+            size={100}
+          />
+        </View>
       )}
     </View>
   );

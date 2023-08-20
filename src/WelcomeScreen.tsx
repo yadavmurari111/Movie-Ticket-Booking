@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ROUTE_NAME from './navigation/navigation-constants';
 import {presetBase} from './utils/color';
+import {LOGGEDIN_USER, storeDataToAsyncStorage} from './utils/utils';
 
 const WelcomeScreenComponent = ({navigation}: any) => {
   const navigateToLoggedInScreen = () => {
@@ -10,10 +11,11 @@ const WelcomeScreenComponent = ({navigation}: any) => {
     });
   };
 
-  const handleGoogleLogin = () => {
-    // Implement your Google login logic here
+  const handleGoogleLogin = async () => {
+    // Implement Google login logic here
     // After successful login, navigate to the next screen
     navigateToLoggedInScreen();
+    await storeDataToAsyncStorage(LOGGEDIN_USER, {username: 'murari123'});
   };
 
   return (

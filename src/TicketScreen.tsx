@@ -38,13 +38,15 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <HeaderComponent navigation={navigation} title={'Ticket'} />
+      <HeaderComponent navigation={navigation} title={'My Tickets'} />
       {!storedTicketData && (
-        <LabelComponent
-          variant={ETypographyVariant.MEDIUM_SEMIBOLD}
-          color={presetBase.colors.white}>
-          No movie ticket booked yet!
-        </LabelComponent>
+        <View style={styles.loaderContainer}>
+          <LabelComponent
+            variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+            color={presetBase.colors.white}>
+            No movie ticket booked yet!
+          </LabelComponent>
+        </View>
       )}
       {storedTicketData && (
         <View style={styles.linearGradientContainer}>
@@ -85,12 +87,12 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
               <View style={styles.footerSubContainer}>
                 <View style={styles.footerItemContainer}>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
                     {storedTicketData.dateSlotSelected.dateNumber}
                   </LabelComponent>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
                     {storedTicketData.dateSlotSelected.dayName}
                   </LabelComponent>
@@ -99,7 +101,7 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
                   <LabelComponent
                     variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
-                    Time
+                    time
                   </LabelComponent>
                   <LabelComponent
                     variant={ETypographyVariant.SMALL_SEMIBOLD}
@@ -109,7 +111,7 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
                 </View>
                 <View style={styles.footerItemContainer}>
                   <AntDesignIcons
-                    size={16}
+                    size={14}
                     name={'clockcircleo'}
                     color={presetBase.colors.white}
                   />
@@ -123,9 +125,9 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
               <View style={styles.footerSubContainer}>
                 <View style={styles.footerItemContainer}>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
-                    Hall no.
+                    hall no.
                   </LabelComponent>
                   <LabelComponent
                     variant={ETypographyVariant.SMALL_SEMIBOLD}
@@ -135,9 +137,9 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
                 </View>
                 <View style={styles.footerItemContainer}>
                   <LabelComponent
-                    variant={ETypographyVariant.MEDIUM_SEMIBOLD}
+                    variant={ETypographyVariant.SMALL_SEMIBOLD}
                     color={presetBase.colors.white}>
-                    Seats
+                    seats
                   </LabelComponent>
                   <View style={styles.seatsBox}>
                     {storedTicketData.seatsSelected &&
@@ -170,10 +172,15 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     display: 'flex',
+    padding: 12,
     alignItems: 'center',
     backgroundColor: presetBase.colors.darkBlack,
   },
-
+  loaderContainer: {
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   imageBG: {
     width: '100%',
     aspectRatio: 9 / 16,

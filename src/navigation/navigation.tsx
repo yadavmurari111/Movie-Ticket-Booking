@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import WelcomeScreenComponent from '../WelcomeScreen';
 import HomeScreenComponent from '../HomeScreen';
@@ -17,9 +17,11 @@ import SeatSelectionScreen from '../SeatSelectionScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
-export const MainStack = () => {
+export const MainStack: FunctionComponent<{initialRoute: string}> = ({
+  initialRoute,
+}) => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={initialRoute}>
       <Stack.Screen
         name={ROUTE_NAME.WELCOME_SCREEN_STACK}
         component={WelcomeScreenStack}
@@ -50,7 +52,7 @@ export const LoggedInScreenStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        animation: 'slide_from_right',
+        animation: 'none',
         headerShadowVisible: true,
       }}>
       <Stack.Screen
@@ -94,8 +96,7 @@ export const BottomTabs = () => {
     <Tab.Navigator
       activeColor={presetBase.colors.blueBase}
       inactiveColor={presetBase.colors.whiteSmooth}
-      barStyle={{backgroundColor: presetBase.colors.black}}
-      sceneAnimationType={'shifting'}
+      barStyle={{backgroundColor: presetBase.colors.darkBlack}}
       initialRouteName={ROUTE_NAME.HOME_TAB}>
       <Tab.Screen
         name={ROUTE_NAME.HOME_TAB}
@@ -105,7 +106,7 @@ export const BottomTabs = () => {
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons
               name={focused ? 'home' : 'home-outline'}
-              size={20}
+              size={24}
               color={color}
             />
           ),
@@ -117,7 +118,7 @@ export const BottomTabs = () => {
         options={{
           title: 'SEARCH',
           tabBarIcon: ({color}) => (
-            <FontAwesome name={'search'} size={20} color={color} />
+            <FontAwesome name={'search'} size={24} color={color} />
           ),
         }}
       />
@@ -127,7 +128,7 @@ export const BottomTabs = () => {
         options={{
           title: 'TICKET',
           tabBarIcon: ({color}) => (
-            <FontAwesome name={'ticket'} size={20} color={color} />
+            <FontAwesome name={'ticket'} size={24} color={color} />
           ),
         }}
       />
@@ -139,7 +140,7 @@ export const BottomTabs = () => {
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons
               name={focused ? 'account' : 'account-outline'}
-              size={20}
+              size={24}
               color={color}
             />
           ),
