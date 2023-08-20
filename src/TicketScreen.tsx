@@ -38,7 +38,7 @@ const TicketScreenComponent: FunctionComponent<any> = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <HeaderComponent navigation={navigation} title={'Ticket'} />
+      <HeaderComponent navigation={navigation} title={'My Tickets'} />
       {!storedTicketData && (
         <LabelComponent
           variant={ETypographyVariant.MEDIUM_SEMIBOLD}
